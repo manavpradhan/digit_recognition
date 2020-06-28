@@ -38,7 +38,7 @@ def main():
         x, y, w, h = 0, 65, 300, 300
         cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
-        cv2.putText(img, " Deep Network : " + str(ans1), (10, 380),
+        cv2.putText(img, " Predicted digit is : " + str(ans1), (10, 380),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
 
         #change the window size to fit screen properly
