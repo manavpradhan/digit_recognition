@@ -26,10 +26,6 @@ data = data[:,1:]
 print("Data loaded, ready to go!")
 
 
-#plot distribution of label values
-g = sns.countplot(label)
-
-
 # Diving data and label into two parts: train and validation.
 # We have a separate mnist_test.csv file for testing our model predictions
 
@@ -62,7 +58,7 @@ print("valid_label shape: ",valid_label.shape)
 
 
 # Importing modules needed to build model
-# Keras does provide a lot of capability for creating convolutional neural networks.
+
 
 
 from keras.models import Sequential
@@ -97,7 +93,6 @@ def create_model():
     return model
 
 # Passing training and validation data along with labels to model
-# build the model
 model = create_model()
 # Fit the model
 model.fit(train_data, train_label, validation_data=(valid_data, valid_label), epochs=10, batch_size=200, verbose=2)
