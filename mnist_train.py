@@ -25,15 +25,11 @@ data = data[:,1:]
 
 print("Data loaded, ready to go!")
 
-
-# Diving data and label into two parts: train and validation.
-# We have a separate mnist_test.csv file for testing our model predictions
-
 # splitting data into train and valid
 train_data=data[:35000,:]
 valid_data=data[35000:,:]
 
-# reshaping to make it in proper input shape for a neural network
+# reshaping
 train_data = train_data.reshape(train_data.shape[0], 1, 28, 28).astype('float32')
 valid_data = valid_data.reshape(valid_data.shape[0], 1, 28, 28).astype('float32')
 
@@ -46,7 +42,7 @@ train_label = label[:35000]
 valid_label = label[35000:]
 
 # one-hot-encoding
-# Encode labels to one hot vectors (ex : 2 -> [0,0,1,0,0,0,0,0,0,0])
+
 train_label = np_utils.to_categorical(train_label)
 valid_label = np_utils.to_categorical(valid_label)
 
@@ -76,9 +72,6 @@ seed = 7
 np.random.seed(seed)
 
 
-# Define a function to create a model
-
-
 def create_model():
     # create model
     model = Sequential()
@@ -103,16 +96,12 @@ scores = model.evaluate(valid_data, valid_label, verbose=0)
 print("CNN Error: %.2f%%" % (100-scores[1]*100))
 
 # Saving model weights for later use
-
-
 model.save("model.h5")
-print("model weights saved in model.h5 file")
 
-
-# Saving model information in .json file
+# Saving model informtion in .json file
 
 from keras.models import model_from_json
 model_json = model.to_json()
 with open("model.json", "w") as json_file:
     json_file.write(model_json)
-print("model saved as model.json file")
+
